@@ -42,9 +42,9 @@ int16_t Mux::read(int8_t channel) {
   }
 
   switch (signalType) {
-  case ANALOG:
+  case ANALOG_TYPE:
     return analogRead(signalPin);
-  case DIGITAL:
+  case DIGITAL_TYPE:
     return digitalRead(signalPin);
   default:
     return -1;
@@ -95,12 +95,12 @@ int8_t Mux::setSignalPin(uint8_t pin, uint8_t mode, uint8_t type) {
   pinMode(this->signalPin = pin, this->signalMode = mode);
 
   switch (type) {
-  case ANALOG:
-  case DIGITAL:
+  case ANALOG_TYPE:
+  case DIGITAL_TYPE:
     /* NOOP */
     break;
   default:
-    type = DIGITAL;
+    type = DIGITAL_TYPE;
     break;
   }
   this->signalType = type;
@@ -117,14 +117,14 @@ int8_t Mux::write(uint8_t data, int8_t channel) {
   }
 
   switch (signalType) {
-  case ANALOG:
+  case ANALOG_TYPE:
     #if defined(ARDUINO_ARCH_ESP32)
     ledcWrite(signalPin, data);
     #else
     analogWrite(signalPin, data);
     #endif
     break;
-  case DIGITAL:
+  case DIGITAL_TYPE:
     digitalWrite(signalPin, data);
     break;
   }
