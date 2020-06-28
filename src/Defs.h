@@ -16,10 +16,9 @@
 #ifndef arduino_ad_mux_lib_Defs_h
 #define arduino_ad_mux_lib_Defs_h
 
-#define ANALOG 0
-#define DIGITAL 1
+#define ANALOG_TYPE 0
+#define DIGITAL_TYPE 1
 
-#define DISABLED 0
 #define ENABLED 1
 
 /*
